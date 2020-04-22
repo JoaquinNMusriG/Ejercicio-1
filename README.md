@@ -1,3 +1,3 @@
 # Ejercicio-1
-Nombre: Joaquín Nicolás Musri Gómez    Registro: 20711
-
+_ Nombre: Joaquín Nicolás Musri Gómez    
+_ Registro: 20711

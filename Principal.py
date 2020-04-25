@@ -1,5 +1,4 @@
 from Email import Email
-from Manejador import Manejador
 import csv
 
 if __name__ == '__main__':
@@ -17,17 +16,22 @@ if __name__ == '__main__':
     mail.cambiaContra(verificaContra)
 
     nuevaCuenta = input('Ingrese la direccion para crear el nuevo objeto email: ')
-    nuevo = Manejador(nuevaCuenta)
-    otroEmail = nuevo.crearCuenta()
-    if type(otroEmail) == Email:
-        print('El mail creado es : ' + otroEmail.retornaEmail())
+    otroEmail = Email()
+    varVerificadora = otroEmail.crearCuenta(nuevaCuenta)
+    if varVerificadora:
+        print('El mail creado es: ' + otroEmail.retornaEmail())
+    else:
+        del otroEmail
 
     dom = input('Ingrese el dominio a contar: ')
     archivo = open('ejemplo.csv')
     reader = csv.reader(archivo, delimiter = ',')
     cont = 0
+    mailCSV = Email()
     for list in reader:
-        if dom == list[0][list[0].find("@") + 1:list[0].rfind(".")]:
-            cont+=1
-    print('La cantidad de veces que aparece el dominio ' + dom + 'es de: ' + str(cont))
+        prueba = mailCSV.crearCuenta(list[0])
+        if prueba:
+            if mailCSV.getDominio() == dom:
+                cont +=1
+    print('La cantidad de veces que aparece el dominio ' + dom + ' es de: ' + str(cont))
     archivo.close()
